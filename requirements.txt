@@ -1,0 +1,48 @@
+# Core ML/DL libraries
+torch>=2.0.0
+torchvision>=0.15.0
+tensorflow>=2.13.0
+keras>=2.13.0
+
+# Computer Vision and Image Processing
+opencv-python>=4.8.0
+scikit-image>=0.21.0
+Pillow>=10.0.0
+
+# GIS and Geospatial libraries
+rasterio>=1.3.0
+geopandas>=0.13.0
+shapely>=2.0.0
+fiona>=1.9.0
+pyproj>=3.6.0
+folium>=0.14.0
+
+# Scientific Computing
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+joblib>=1.3.0
+
+# Deep Learning for Segmentation
+segmentation-models-pytorch>=0.3.0
+
+# Utilities
+tqdm>=4.65.0
+jupyter>=1.0.0
+ipykernel>=6.25.0
+notebook>=7.0.0
+
+# Image Augmentation
+albumentations>=1.3.0
+
+# Clustering
+umap-learn>=0.5.0
+hdbscan>=0.8.0
+
+# Visualization
+plotly>=5.15.0

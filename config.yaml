@@ -1,0 +1,178 @@
+# GIS Image Analysis Pipeline Configuration
+# This configuration file controls all aspects of the analysis pipeline
+
+# Preprocessing Configuration
+preprocessing:
+  target_size: [512, 512]           # Target image size [height, width]
+  normalize: true                   # Apply normalization
+  handle_missing_data: true         # Handle missing/corrupted pixels
+  noise_reduction: true             # Apply noise reduction
+  output_format: "uint8"            # Output data format
+  resample_method: "bilinear"       # Resampling method for resizing
+
+# Feature Extraction Configuration
+feature_extraction:
+  tile_size: 256                    # Tile size for processing
+  overlap: 0.25                     # Overlap between tiles (0.0 to 1.0)
+  n_clusters: 5                     # Number of land cover clusters
+  feature_type: "hybrid"            # Feature type: 'traditional', 'deep', 'hybrid'
+  use_deep_features: true           # Enable deep learning features
+  
+  # Traditional feature settings
+  traditional_features:
+    - "spectral_indices"            # Vegetation, water, urban indices
+    - "texture_features"            # LBP, Gabor filters, etc.
+    - "morphological_features"      # Erosion, dilation, etc.
+    - "edge_features"               # Sobel, Canny edges
+
+# SegFormer Segmentation Configuration
+segformer:
+  model_name: "nvidia/segformer-b3-finetuned-ade-512-512"
+  confidence_threshold: 0.5         # Minimum confidence for predictions
+  tile_size: 512                    # Processing tile size
+  overlap: 0.25                     # Tile overlap
+  
+  # Land cover class mapping
+  land_cover_classes:
+    0: "background"
+    1: "urban"
+    2: "forest" 
+    3: "water"
+    4: "agriculture"
+    5: "other"
+  
+  # Post-processing
+  apply_smoothing: true             # Apply morphological smoothing
+  min_region_size: 100              # Minimum region size (pixels)
+
+# YOLO-World Detection Configuration
+yolo:
+  model_name: "yolo_world"          # YOLO-World model
+  confidence_threshold: 0.25        # Detection confidence threshold
+  iou_threshold: 0.45               # NMS IoU threshold
+  tile_size: 640                    # YOLO processing tile size
+  overlap: 0.2                      # Tile overlap for detection
+  
+  # Satellite-specific object classes
+  satellite_classes:
+    - "building"
+    - "road"
+    - "vehicle"
+    - "tree"
+    - "water"
+    - "field"
+    - "bridge"
+    - "runway"
+  
+  # Detection post-processing
+  apply_nms: true                   # Apply Non-Maximum Suppression
+  merge_close_detections: true      # Merge nearby detections
+  min_detection_size: 20            # Minimum detection size (pixels)
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "iou"                         # Intersection over Union
+    - "f1_score"                    # F1 Score
+    - "precision"                   # Precision
+    - "recall"                      # Recall
+    - "accuracy"                    # Pixel accuracy
+  
+  save_confusion_matrix: true       # Save confusion matrices
+  generate_report: true             # Generate evaluation report
+  
+  # Ground truth (if available)
+  ground_truth_path: null           # Path to ground truth annotations
+  ground_truth_format: "geojson"    # Format: 'geojson', 'shapefile', 'raster'
+
+# Visualization Configuration
+visualization:
+  save_format: "png"                # Output format: 'png', 'jpg', 'tiff'
+  dpi: 300                          # Image resolution
+  colormap: "viridis"               # Default colormap
+  figure_size: [12, 8]              # Figure size [width, height] in inches
+  
+  # Feature visualization
+  show_feature_maps: true           # Generate feature map visualizations
+  max_features_to_show: 10          # Maximum number of features to visualize
+  
+  # Overlay settings
+  overlay_alpha: 0.6                # Transparency for overlays
+  show_legends: true                # Include legends in plots
+
+# Satellite-specific Visualization Configuration
+satellite_viz:
+  # Land cover color scheme (RGB values)
+  land_cover_colors:
+    0: [0, 0, 0]                    # background - black
+    1: [255, 0, 0]                  # urban - red
+    2: [0, 255, 0]                  # forest - green  
+    3: [0, 0, 255]                  # water - blue
+    4: [255, 255, 0]                # agriculture - yellow
+    5: [128, 128, 128]              # other - gray
+  
+  # Detection bounding box colors
+  detection_colors:
+    building: [255, 0, 0]           # red
+    road: [128, 128, 128]           # gray
+    vehicle: [255, 255, 0]          # yellow
+    tree: [0, 255, 0]               # green
+    water: [0, 0, 255]              # blue
+    field: [255, 165, 0]            # orange
+    bridge: [255, 0, 255]           # magenta
+    runway: [128, 0, 128]           # purple
+  
+  # Visualization options
+  show_confidence_scores: true      # Show confidence scores on detections
+  bbox_thickness: 2                 # Bounding box line thickness
+  text_size: 0.5                    # Text size for labels
+
+# Logging Configuration
+logging:
+  level: "INFO"                     # Log level: DEBUG, INFO, WARNING, ERROR
+  file: null                        # Log file path (null for console only)
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Performance Configuration
+performance:
+  max_memory_usage_gb: 8            # Maximum memory usage
+  num_workers: 4                    # Number of parallel workers
+  batch_size: 1                     # Processing batch size
+  use_gpu: true                     # Use GPU if available
+  mixed_precision: false            # Use mixed precision training
+
+# Output Configuration
+output:
+  save_intermediate_results: true   # Save intermediate processing results
+  compress_outputs: false           # Compress output files
+  keep_temp_files: false            # Keep temporary files for debugging
+  
+  # File naming
+  timestamp_suffix: true            # Add timestamp to output files
+  prefix: "gis_analysis"            # File prefix
+  
+  # Formats
+  segmentation_format: "png"        # Segmentation mask format
+  detection_format: "json"          # Detection results format
+  features_format: "npz"            # Feature arrays format
+
+# Dataset Configuration (for future training)
+dataset:
+  augmentation:
+    enabled: false                  # Enable data augmentation
+    rotation: true                  # Random rotation
+    flip: true                      # Random flipping
+    brightness: true                # Brightness adjustment
+    contrast: true                  # Contrast adjustment
+  
+  # External datasets for enhancement
+  external_datasets:
+    - name: "EuroSAT"
+      enabled: false
+      path: null
+    - name: "LandCover.ai"
+      enabled: false  
+      path: null
+    - name: "BigEarthNet"
+      enabled: false
+      path: null
