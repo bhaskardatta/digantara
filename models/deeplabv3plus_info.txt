@@ -1,0 +1,8 @@
+DeepLabV3+ Model Information
+==========================
+Encoder: resnet101
+Encoder Weights: imagenet (pretrained)
+Input Channels: 3
+Output Classes: 6
+Activation: softmax
+Parameters: 45,670,998

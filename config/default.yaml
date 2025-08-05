@@ -1,0 +1,55 @@
+# Default configuration for GIS Image Analysis
+preprocessing:
+  target_size: [2048, 2048]  # Increased for better detail preservation
+  normalize: true
+  enhance_contrast: true
+  remove_clouds: false
+
+detection:
+  model_size: "l"  # Use YOLOv8l for better speed/accuracy balance
+  confidence_threshold: 0.05  # Very low for aerial imagery
+  iou_threshold: 0.3  # Lower for overlapping objects in aerial views
+  max_detections: 2000  # More detections for dense aerial imagery
+  class_names:
+    - "building"
+    - "vehicle" 
+    - "road"
+    - "bridge"
+    - "aircraft"
+    - "ship"
+    - "storage_tank"
+    - "tower"
+    - "construction_site"
+    - "sports_facility"
+    - "parking_lot"
+    - "residential_area"
+
+segmentation:
+  num_classes: 6
+  encoder_name: "resnet101"
+  encoder_weights: "imagenet"
+  activation: "softmax"
+  class_names:
+    - "background"
+    - "vegetation"
+    - "urban"
+    - "water"
+    - "agriculture" 
+    - "bare_soil"
+  class_colors:
+    - [0, 0, 0]        # background - black
+    - [0, 255, 0]      # vegetation - green
+    - [255, 0, 0]      # urban - red
+    - [0, 0, 255]      # water - blue
+    - [255, 255, 0]    # agriculture - yellow
+    - [139, 69, 19]    # bare_soil - brown
+
+evaluation:
+  iou_thresholds: [0.5, 0.75, 0.9]
+  confidence_threshold: 0.5
+
+visualization:
+  dpi: 300
+  figsize: [12, 8]
+  style: "satellite"
+  colormap: "viridis"

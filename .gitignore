@@ -1,0 +1,268 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# YOLO Model Files (Large AI Models)
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.weights
+*.cfg
+models/*.pt
+models/*.pth
+models/*.onnx
+models/yolo*.pt
+models/deeplabv3*.pt
+
+# Large Data Files
+*.tif
+*.tiff
+*.hdf5
+*.h5
+*.nc
+*.zarr
+
+# Results and Output Directories
+results/
+outputs/
+*_results/
+*_analysis/
+*_output/
+preprocessing_demo_results/
+real_ai_analysis_results/
+tiff_analysis_results/
+
+# Temporary Files
+*.tmp
+*.temp
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and Editors
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+
+# GPU/CUDA cache
+.nv/
+
+# matplotlib cache
+.matplotlib/
+
+# Package managers
+node_modules/
+package-lock.json
+yarn.lock
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Compiled documentation
+docs/build/
+
+# Data directories (keep structure but ignore content)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# PyTorch specific
+*.pth.tar
+
+# Tensorboard logs
+runs/
+tb_logs/
+
+# MLFlow
+mlruns/
+
+# Weights & Biases
+wandb/
+
+# Model artifacts
+artifacts/
+checkpoints/
+
+# Large files (generally)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.bin
+*.dat
+
+# Secrets and configuration
+.env
+.env.local
+.env.production
+.env.staging
+config.ini
+secrets.json
+
+# Temporary directories
+tmp/
+temp/
+cache/
